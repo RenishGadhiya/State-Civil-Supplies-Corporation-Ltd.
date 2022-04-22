@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmer Details</title>
+
+    <style>
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      #heading {
+        text-align: center;
+        background-color: green;
+        height: 50px;
+        margin: 10px;
+        font-size: x-large;
+        color: white;
+        font-family: "Courier New", Courier, monospace;
+      }
+      body {
+        background-color: azure;
+      }
+      #registration_form {
+        color: rgb(6, 47, 78);
+      }
+      fieldset {
+        margin: 10px;
+      }
+      label {
+        display: inline-block;
+        width: 200px;
+        margin-bottom: 2px;
+        font-size: 1.5em;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .detail {
+        margin-right: auto;
+        margin-top: 7px;
+        margin-bottom: 7px;
+      }
+
+      input {
+        margin-bottom: 2px;
+        height: 2em;
+        width: 25em;
+      }
+      #table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      td,
+      th {
+        border: 1px solid;
+      }
+
+      select {
+        margin-bottom: 2px;
+        height: 2.5em;
+        width: 25em;
+      }
+      .btn {
+        background-color: #08d;
+        border-radius: 12px;
+        justify-content: center;
+        align-items: center;
+        border: 0;
+        box-sizing: border-box;
+        color: #eee;
+        cursor: pointer;
+        font-size: 25px;
+        height: 30px;
+        margin-top: 10px;
+        text-align: center;
+        width: 13%;
+      }
+
+      .btn:active {
+        background-color: #06b;
+      }
+      .logout {
+        float: right;
+        margin-right: 50px;
+      }
+      td {
+        vertical-align: center;
+        text-align: center;
+      }
+    </style>
+
+    <script>
+      var obj;
+      function changeSelect(s1, s2) {
+        var s1 = document.getElementById(s1);
+        var s2 = document.getElementById(s2);
+        s2.innerHTML = "";
+
+        if (s1.value == "Junagadh") {
+          var optionArray = [
+            "|Select Taluka",
+            "Vanthali| Vanthali",
+            "Mendarda| Mendarada",
+            "Kesod| Kesod",
+          ];
+        } else if (s1.value == "Rajkot") {
+          var optionArray = [
+            "|Select Taluka",
+            "Jetpur| Jetpur",
+            "Jam Kandorana| Jam kandorana",
+            "Gondal| Gondal",
+          ];
+        } else if (s1.value == "Surat") {
+          var optionArray = [
+            "|Selecet Taluka",
+            "Olpad| Olpad",
+            "Mangrol| Mangrol",
+            "Mandavi| Mandvi",
+          ];
+        } else if (s1.value == "Vanthali") {
+          var optionArray = [
+            "|Selecet Village",
+            "Dungri| Dungri",
+            "Akha| Akha",
+            "Balot| Balot",
+          ];
+        } else if (s1.value == "Mendarda") {
+          var optionArray = [
+            "|Select Village",
+            "Alidhra| Alidhra",
+            "Amargadh| Amargadh",
+            "Ambala| Ambala",
+          ];
+        } else if (s1.value == "Kesod") {
+          var optionArray = [
+            "|Select Village",
+            "Agatrai| Agatrai",
+            "Ajab| Ajab",
+            "Akhodad| Akhodad",
+          ];
+        } else if (s1.value == "Jetpur") {
+          var optionArray = [
+            "|Select Village",
+            "Achanchukya| Achanchukya",
+            "Balloopura| Balloopura",
+            "Baroi| Baori",
+          ];
+        } else if (s1.value == "Jam Kandorana") {
+          var optionArray = [
+            "|Select Village",
+            "Dadar| Dadar",
+            "Dadvi| Dadvi",
+            "Dholidhar| Dholidhar",
+          ];
+        } else if (s1.value == "Gondal") {
+          var optionArray = [
+            "|Select Village",
+            "Anida| 	Anida",
+            "Ambard| Ambard",
+            "Bandhiya| 	Bandhiya",
+          ];
+        } else if (s1.value == "Olpad") {
+          var optionArray = [
+            "|Select Village",
+            "Achharan| Achharan",
+            "Admor| Admor",
+            "Ambheta| Ambheta",
+          ];
+        } else if (s1.value == "Mangrol") {
+          var optionArray = [
+            "|Select Village",
+            "Ghodadar| Ghodadar",
+            "Bhathrot| Bhathrot",
+            "Langad| Langad",
+          ];
+        } else if (s1.value == "Mandavi") {
+          var optionArray = [
+            "|Select Village",
+            "Karanj| Karanj",
+            "Togapur| Togapur",
+            "Tuked| Tuked",
+          ];
+        }
+
+        for (var option in optionArray) {
+          var pair = optionArray[option].split("|");
+          var newOption = document.createElement("option");
+          newOption.value = pair[0];
+          newOption.innerHTML = pair[1];
+          s2.options.add(newOption);
+        }
+      }
+
+      function showTable() {
+        var s1 = document.getElementById("table");
+
+        console.log("show table called");
+        s1.innerHTML = "";
+        var t_row = document.createElement("tr");
+        var t_h0 = document.createElement("th");
+        var t_h1 = document.createElement("th");
+        var t_h2 = document.createElement("th");
+        var t_h3 = document.createElement("th");
+        var t_h4 = document.createElement("th");
+        var t_h5 = document.createElement("th");
+        var t_h6 = document.createElement("th");
+        var t_h7 = document.createElement("th");
+        var t_h8 = document.createElement("th");
+        var t_h9 = document.createElement("th");
+        var t_h10 = document.createElement("th");
+
+        t_h0.innerHTML = "Sr No.";
+        t_h1.innerHTML = "Name";
+        t_h2.innerHTML = "Aadharcard No.";
+        t_h3.innerHTML = "Mobile no.";
+        t_h4.innerHTML = "Village";
+        t_h5.innerHTML = "Taluka";
+        t_h6.innerHTML = "District";
+        t_h7.innerHTML = "Bank Name";
+        t_h8.innerHTML = "A/c No.";
+        t_h9.innerHTML = "Branch Code";
+        t_h10.innerHTML = "Date of Registration";
+
+        t_row.appendChild(t_h0);
+        t_row.appendChild(t_h1);
+        t_row.appendChild(t_h2);
+        t_row.appendChild(t_h3);
+        t_row.appendChild(t_h4);
+        t_row.appendChild(t_h5);
+        t_row.appendChild(t_h6);
+        t_row.appendChild(t_h7);
+        t_row.appendChild(t_h8);
+        t_row.appendChild(t_h9);
+        t_row.appendChild(t_h10);
+        s1.appendChild(t_row);
+
+        let form = document.forms["farmerForm"];
+        console.log({
+          village: form["village"].value,
+          taluka: form["taluka"].value,
+          district: form["district"].value,
+          min_land_area: form["min_land"].value,
+          max_land_area: form["max_area"].value,
+          starting_date: form["Start_Date"].value,
+          ending_date: form["End_Date"].value,
+        });
+        fetch("/farmerSearch", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            village: form["village"].value,
+            taluka: form["taluka"].value,
+            district: form["district"].value,
+            min_land_area: form["min_land"].value,
+            max_land_area: form["max_area"].value,
+            starting_date: form["Start_Date"].value,
+            ending_date: form["End_Date"].value,
+          }),
+        })
+          .then((Response) => Response.json())
+          .then((obj) => {
+            console.log("this is fetching object");
+            console.log(obj);
+            var sr_no = 1;
+            console.log("Object in table to show : ", obj);
+            for (var option in obj) {
+              t_row = document.createElement("tr");
+              t_col0 = document.createElement("td");
+              t_col1 = document.createElement("td");
+              t_col2 = document.createElement("td");
+              t_col3 = document.createElement("td");
+              t_col4 = document.createElement("td");
+              t_col5 = document.createElement("td");
+              t_col6 = document.createElement("td");
+              t_col7 = document.createElement("td");
+              t_col8 = document.createElement("td");
+              t_col9 = document.createElement("td");
+              t_col10 = document.createElement("td");
+
+              t_col0.innerHTML = sr_no++;
+              t_col1.innerHTML = obj[option].farmer_name;
+              t_col2.innerHTML = obj[option].adhar_number;
+              t_col3.innerHTML = obj[option].mobile_no;
+              t_col4.innerHTML = obj[option].village;
+              t_col5.innerHTML = obj[option].taluka;
+              t_col6.innerHTML = obj[option].district;
+              t_col7.innerHTML = obj[option].bank_name;
+              t_col8.innerHTML = obj[option].bank_account_no;
+              t_col9.innerHTML = obj[option].branch_code;
+              t_col10.innerHTML = obj[option].date_of_registration;
+
+              t_row.appendChild(t_col0);
+              t_row.appendChild(t_col1);
+              t_row.appendChild(t_col2);
+              t_row.appendChild(t_col3);
+              t_row.appendChild(t_col4);
+              t_row.appendChild(t_col5);
+              t_row.appendChild(t_col6);
+              t_row.appendChild(t_col7);
+              t_row.appendChild(t_col8);
+              t_row.appendChild(t_col9);
+              t_row.appendChild(t_col10);
+              s1.appendChild(t_row);
+              document.getElementById("table").style.border =
+                "thick solid #0000FF";
+            }
+          });
+        return false;
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="heading">
+      <a href="/logout" style="text-decoration: none; color: #eee">
+        <button class="logout btn" type="submit">Logout</button>
+      </a>
+      <h1>Farmer Details</h1>
+    </div>
+    <form name="farmerForm" onsubmit="return showTable()" method="get">
+      <div>
+        <label for="district">District Name</label>
+        <select
+          name="district"
+          id="district"
+          onchange="changeSelect(this.id,'taluka')"
+        >
+          <option>Select District</option>
+          <option value="Junagadh">Junagadh</option>
+          <option value="Rajkot">Rajkot</option>
+          <option value="Surat">Surat</option></select
+        ><br />
+      </div>
+      <div>
+        <label>Taluka Name</label>
+        <select
+          name="taluka"
+          id="taluka"
+          onchange="changeSelect(this.id,'village')"
+        >
+          <option>Select Taluka</option></select
+        ><br />
+      </div>
+      <div>
+        <label>Village Name</label>
+        <select name="village" id="village">
+          <option>Select Village</option></select
+        ><br />
+      </div>
+
+      <div>
+        <label>Land Area from</label>
+        <input
+          id="area"
+          placeholder="Area In Acre"
+          type="number"
+          name="min_land"
+        />
+        <label style="margin-left: 10%">Land Area to</label>
+        <input placeholder="Area In Acre" type="number" name="max_area" />
+      </div>
+
+      <div>
+        <label for="Start_Date">Start date:</label>
+        <input type="date" id="Start_Date" name="Start_Date" />
+        <label for="End_Date" style="margin-left: 10.2%">End date:</label>
+        <input type="date" id="End_Date" name="End_Date" />
+      </div>
+
+      <button class="btn" type="submit">Submit</button>
+    </form>
+    <br /><br /><br />
+
+    <table id="table" style="width: 100%; border: 2px solid black"></table>
+  </body>
+</html>

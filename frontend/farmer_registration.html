@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #heading {
+            text-align: center;
+            background-color: green;
+            height: 50px;
+            margin: 10px;
+            font-size: x-large;
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        body {
+            background-color: azure;
+        }
+
+        #registration_form {
+            color: rgb(6, 47, 78);
+        }
+        fieldset {
+            margin: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 200px;
+            margin-bottom: 2px;
+            font-size: 1.5em;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .detail {
+            margin-right: auto;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+
+        .required:after {
+            content: "*";
+            size: 2 px;
+            color: red;
+        }
+
+        legend {
+            font-size: 2em;
+            text-decoration: underline;
+        }
+
+        input {
+            margin-bottom: 2px;
+            height: 2em;
+            width: 25em;
+        }
+
+        .date label {
+            width: 150px;
+            margin-left: 100px;
+        }
+
+        .btn {
+            background-color: #08d;
+            border-radius: 12px;
+            justify-content: center;
+            align-items: center;
+            border: 0;
+            box-sizing: border-box;
+            color: #eee;
+            cursor: pointer;
+            font-size: 25px;
+            height: 30px;
+            margin-top: 10px;
+            text-align: center;
+            width: 13%;
+        }
+
+        .btn:active {
+            background-color: #06b;
+        }
+
+        .logout {
+            float: right;
+            margin-right: 50px;
+        }
+    </style>
+    <title>Farmer Registration Portal</title>
+    <script>
+        function changeSelect(s1, s2) {
+            var s1 = document.getElementById(s1);
+            var s2 = document.getElementById(s2);
+            s2.innerHTML = "";
+            if (s1.value == "Junagadh") {
+                var optionArray = [
+                    "|Select Taluka",
+                    "Vanthali| Vanthali",
+                    "Mendarda| Mendarada",
+                    "Kesod| Kesod",
+                ];
+            } else if (s1.value == "Rajkot") {
+                var optionArray = [
+                    "|Select Taluka",
+                    "Jetpur| Jetpur",
+                    "Jam Kandorana| Jam kandorana",
+                    "Gondal| Gondal",
+                ];
+            } else if (s1.value == "Surat") {
+                var optionArray = [
+                    "|Select Taluka",
+                    "Olpad| Olpad",
+                    "Mangrol| Mangrol",
+                    "Mandavi| Mandvi",
+                ];
+            } else if (s1.value == "Vanthali") {
+                var optionArray = [
+                    "|Selecet Village",
+                    "Dungri| Dungri",
+                    "Akha| Akha",
+                    "Balot| balot",
+                ];
+            } else if (s1.value == "Mendarda") {
+                var optionArray = [
+                    "|Select Village",
+                    "Alidhra| Alidhra",
+                    "Amargadh| Amargadh",
+                    "Ambala| Ambala",
+                ];
+            } else if (s1.value == "Kesod") {
+                var optionArray = [
+                    "|Select Village",
+                    "Agatrai| Agatrai",
+                    "Ajab| Ajab",
+                    "Akhodad| Akhodad",
+                ];
+            } else if (s1.value == "Jetpur") {
+                var optionArray = [
+                    "|Select Village",
+                    "Achanchukya| Achanchukya",
+                    "Balloopura| Balloopura",
+                    "Baroi| Baori",
+                ];
+            } else if (s1.value == "Jam Kandorana") {
+                var optionArray = [
+                    "|Select Village",
+                    "Dadar| Dadar",
+                    "Dadvi| Dadvi",
+                    "Dholidhar| Dholidhar",
+                ];
+            } else if (s1.value == "Gondal") {
+                var optionArray = [
+                    "|Select Village",
+                    "Anida| 	Anida",
+                    "Ambard| Ambard",
+                    "Bandhiya| 	Bandhiya",
+                ];
+            } else if (s1.value == "Olpad") {
+                var optionArray = [
+                    "|Select Village",
+                    "Achharan| Achharan",
+                    "Admor| Admor",
+                    "Ambheta| Ambheta",
+                ];
+            } else if (s1.value == "Mangrol") {
+                var optionArray = [
+                    "|Select Village",
+                    "Ghodadar| Ghodadar",
+                    "Bhathrot| Bhathrot",
+                    "Langad| Langad",
+                ];
+            } else if (s1.value == "Mandavi") {
+                var optionArray = [
+                    "|Select Village",
+                    "Karanj| Karanj",
+                    "Togapur| Togapur",
+                    "Tuked| Tuked",
+                ];
+            }
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair[1];
+                s2.options.add(newOption);
+            }
+        }
+        function validateAadhaar() {
+            const adharcard = document.getElementById("adharcard");
+            var regexp = /^[2-9]{1}[0-9]{3}\s[0-9]{4}\s[0-9]{4}$/;
+            var ano = adharcard.value;
+
+            if (regexp.test(ano)) {
+                adharcard.style.border = "1px solid black";
+            } else {
+                adharcard.style.border = "2px solid red";
+            }
+        }
+        function mobilenumber() {
+        var mobilenumber = document.getElementById("mobile");
+        var phoneno = /^\d{10}$/;
+        if (mobilenumber.value.match(phoneno)) {
+            mobilenumber.style.border = "1px solid black";
+        } else {
+            mobilenumber.style.border = "2px solid red";
+        }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="heading">
+        <a href="/logout" style="text-decoration: none; color: #eee;">
+        <button class="logout btn" type="submit" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            Logout
+        </button></a>
+        <h1>Farmer Registration Form</h1>
+    </div>
+    <form id="registration_form" method="post" action="/farmerRegistration">
+        <fieldset id="personal_details">
+            <legend>Personal Details</legend>
+            <div class="container">
+                <div class="detail">
+                    <label class="required" for="name">Name</label></br>
+                    <input id="name" name="farmer_name" placeholder="Enter Full Name" type="text" required />
+                </div>
+                <div class="detail">
+                    <label class="required">Mobile No.</label></br>
+                    <input id="mobile" name="mobile_no" placeholder="9999999999" type="number"
+                        onchange="mobilenumber()" required>
+                </div>
+                <div class="detail">
+                    <label class="required">AdharCard No.</label></br>
+                    <input id="adharcard" placeholder="0000 0000 0000" type="text" name="adhar_number"
+                        onchange="validateAadhaar()" required /></br>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="Address">
+            <legend>Address</legend>
+            <div class="container">
+                <div class="detail">
+                    <!-- <label for="required" calss="district">District :</label> -->
+                    <label class="required" for="district">District :</label>
+                    <select id="District" name="District" onchange="changeSelect('District','Center')">
+                        <option value="Select District" name="district">Select District</option>
+                        <option value="Junagadh">Junagadh</option>
+                        <option value="Rajkot">Rajkot</option>
+                        <option value="Surat">Surat</option>
+                    </select>
+                </div>
+
+                <div class="detail">
+                    <label class="required" for="Center">Taluka :</label>
+                    <select id="Center" name="Center" onchange="changeSelect(this.id,'Village')">
+                        <option value="Select Center" name="taluka">Select Taluka</option>
+                    </select>
+                </div>
+                <div class="detail">
+                    <label for="Village" class="requierd">Village :</label>
+                    <select id="Village" name="Village">
+                        <option value="Select Village">Select Village</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="Bank_details">
+            <legend>Bank Details</legend>
+            <div class="container">
+                <div class="detail">
+                    <label class="required">Bank Name</label><br>
+                    <input id="bankname" name="bank_name" placeholder="Bank Name" type="text" required><br>
+                </div>
+                <div class="detail">
+                    <label class="required">Bank Account No.</label><br>
+                    <input id="accountNo" name="bank_account_no" placeholder="Enter Bank Account Number" type="number"
+                        required /><br>
+                </div>
+                <div class="detail">
+                    <label class="required">Branch Code</label><br>
+                    <input id="branch" name="branch_code" placeholder="Enter Branch Code" required /><br>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="Land_details">
+            <legend>Land Details</legend>
+            <div class="container detail">
+                <div>
+                    <label class="required">Land Area</label>
+                    <input id="area" name="land_area" placeholder="Area In Acre" type="number" required />
+                </div>
+                <div class="date">
+                    <label class="required" style="width: auto; margin-right: 50px;">Date of Registration</label>
+                    <input id="date" name="date_of_registration" type="date" required />
+                </div>
+            </div>
+        </fieldset>
+        <input class="btn" value="Submit" type="submit" onclick="submit()">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SCSCL</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+      }
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      .column {
+        float: left;
+        width: 33.3%;
+        margin-bottom: 16px;
+        padding: 0 8px;
+      }
+
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 8px;
+      }
+
+      .about-section {
+        padding: 50px;
+        text-align: center;
+        background-color: #474e5d;
+        color: white;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .container::after,
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      .title {
+        color: grey;
+      }
+
+      .button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 5px;
+        color: white;
+        background-color: grey;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .button:hover {
+        background-color: #555;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        overflow:hidden;
+        background-color: #2E86C1;
+        height: 50px;
+      }
+    
+      li a {
+        display: inline-block;
+        color: #000;
+        padding: 8px 16px;
+        text-decoration: none;
+    
+      }
+      a:link,a:visited{
+        display: block;
+        font-weight: bold;
+        color: peru ;
+        width: 230px;
+        text-align:center;
+        padding: 4%;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+    
+    a:hover, a:active {
+    background-color: #04aa6d;
+    color: white;
+    }
+    
+    
+    li{
+        float: left;
+        margin-right: 15px;
+        margin-top: 10px;
+    }
+    .login{
+      float: right;
+      margin-right: 50px;
+    }
+    .btn {
+      background-color:yellow;
+      border-radius: 10px;
+      border: 0;
+      box-sizing: border-box;
+      color: rgb(41, 61, 61);
+      cursor: pointer;
+      font-size: 17px;
+      height: 30px;
+      margin-top: 2px;
+      margin-left: 19%;
+      text-align: center;
+
+      width: 100%;
+}
+
+.btn:active {
+  background-color: #06b;
+}
+
+      @media screen and (max-width: 650px) {
+        .column {
+          width: 100%;
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+   
+        <h1 style="text-align: center; font-size: 4em; color:#04aa6d; font-family:'Times New Roman', Times, serif;">State Civil Supplies Corporation Ltd.</h1>
+     
+        <div class="navbar" >
+          <ul>
+            <div class="login"><li><form class="right" action="/login" method="get"> <button class=btn type="submit" ><span style="font-family:'Times New Roman', Times, serif; font-weight: 900;">Login</span></button> </li></ul></div>
+            </li>
+            </ul>
+        </div>
+
+    <div class="about-section">
+      <h1>About Us</h1>
+      <p>We are State Civil Supplies Corporation Ltd. known as SCSCL.</p>
+      <p>
+        SCSCL is a government organization that deals with the purchasing and
+        selling of different agricultural commodities. This web application
+        helps the govt. in keeping track of farmers details. The operator (govt
+        employee) can register a farmer with their information. This web
+        application allows to keep track of purchase and distribution of
+        different agricultural commodities.
+      </p>
+      <p></p>
+    </div>
+
+    <h2 style="text-align: center">Our Team</h2>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <div class="container">
+            <h2>Renish Gadhiya</h2>
+            <p class="title">CEO & Founder</p>
+            <p> <a href = "mailto: 202112037@daiict.ac.in">202112037@daiict.ac.in</a></p>
+            <p><button class="button"><a href="https://www.linkedin.com/in/renish-gadhiya-8758b4180/" target="_blank">Contact us</a></button></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="container">
+            <h2>Yash Pandia</h2>
+            <p class="title">Art Director</p>
+            <p><a href = "mailto: 202112004@daiict.ac.in">202112004@daiict.ac.in</a></p>
+            <p><button class="button"><a href="https://www.linkedin.com/in/yashpandia/" target="_blank">Contact us</a></button></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="container">
+            <h2>Abhinav Kakade</h2>
+            <p class="title">Designer</p>
+            <p><a href = "mailto: 202112041@daiict.ac.in">202112041@daiict.ac.in</a></p>
+            <p><button class="button"><a href="https://www.google.com/" target="_blank">Contact us</a></button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
